@@ -7,8 +7,10 @@
 var UI = require('ui');
 var Accel = require('ui/accel');
 var Vibe = require('ui/vibe');
-var startTime = 0;
-var survivedTime = 0;
+var Clock = require('clock');
+var survivedTime = null;
+var startTime = null;
+
 
 
 var main = new UI.Card({
@@ -30,15 +32,16 @@ var end = new UI.Card({
 main.show();
 
 main.on('click', 'up', function(e) {
- // startTime = Date().getTime();
+  startTime = Date.now();
   fight.show();
   Accel.init();
 });
 
 // Register for 'tap' events
-fight.on('accelTap', function(e) {
-//  Vibe.vibrate('short');
- // survivedTime = (Date().getTime() - startTime);
+//fight.on('accelTap', function(e) {
+fight.on('click','up', function(e) {
+  Vibe.vibrate('short');
+  survivedTime = (Date.now() - startTime);
   end.show();
 });
 
