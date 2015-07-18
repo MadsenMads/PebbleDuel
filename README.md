@@ -1,6 +1,6 @@
 # PebbleDuel
 
-Ultimate Duel is a very simple sociale game.
+Ultimate Duel is a very simple social game.
 
 You gather a group of people, and everybody loads up the app, and goes to the fight screen at the same time.
 
