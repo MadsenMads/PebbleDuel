@@ -7,6 +7,9 @@
 var UI = require('ui');
 var Accel = require('ui/accel');
 var Vibe = require('ui/vibe');
+var startTime = null;
+var suvivedTime = null;
+var endTime = null;
 
 var main = new UI.Card({
   title: 'Ultimate Duel',
@@ -38,11 +41,12 @@ fight.on('click','up', function(e) {
  
 
 fight.on('show', function(){
-    var startTime = Date.now();
+    startTime = Date.now();
 });
 
 end.on('show', function(){
-  var survivedTime = (Date.now() - startTime);
+  endTime = Date.now();
+  survivedTime = (endTime - startTime);
   end.subtitle('You survived ' + survivedTime + ' seconds.');
 });
 
