@@ -5,15 +5,7 @@ var Vibe = require('ui/vibe');
 
 /******** variables ****************/
 var endTime;
-/*
-var setEndTime = function() {
- endTime = Date.now();
-};
 
-var getEndTime = function() {
- return endTime;
-};
-*/
 var startTime;
 var setStartTime = function() {
  startTime = Date.now();
@@ -21,15 +13,6 @@ var setStartTime = function() {
 var getStartTime = function() {
  return startTime;
 };
-/*
-var survivedTime;
-var setSurvivedTime = function(){
-  survivedTime = (getEndTime - getStartTime);
-};
-var getSurvivedTime = function(){
-  return survivedTime;
-};
-*/
 
 /******** app initializing *********/
 
@@ -53,6 +36,7 @@ main.show();
 main.on('click', 'up', function(e) {
   Accel.init();
   fight.show();
+   setStartTime();
 });
 
 // Register for 'tap' events
@@ -61,16 +45,10 @@ fight.on('click','up', function(e) {
   Vibe.vibrate('short');
   end.show();
 });
- 
-
-fight.on('show', function(){
-    setStartTime();
-});
-
 
 end.on('show', function(){
  endTime = Date.now();
-  end.subtitle('You survived ' + ((endTime - startTime)/1000) + ' seconds.');
+  end.subtitle('You survived ' + ((endTime - getStartTime)/1000) + ' seconds.');
 });
 
 end.on('click','up',function(e){
