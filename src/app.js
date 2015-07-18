@@ -36,8 +36,8 @@ main.on('click', 'up', function(e) {
 });
 
 // Register for 'tap' events
-//fight.on('accelTap', function(e) {
-fight.on('click','up', function(e) {
+fight.on('accelTap', function(e) {
+//fight.on('click','up', function(e) {
   Vibe.vibrate('short');
   end.show();
 });
