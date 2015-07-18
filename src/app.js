@@ -4,15 +4,11 @@ var Accel = require('ui/accel');
 var Vibe = require('ui/vibe');
 
 /******** variables ****************/
-var endTime;
-
+var secondsSurvived;
 var startTime;
-var setStartTime = function() {
- startTime = Date.now();
+var survivedTime = function(){
+  secondsSurvived = Date.now() - startTime;
 };
-//var getStartTime = function() {
- //return startTime;
-//};
 
 /******** app initializing *********/
 
@@ -35,6 +31,7 @@ main.show();
 
 main.on('click', 'up', function(e) {
   Accel.init();
+  startTime  = Date.now();
   fight.show();
 });
 
@@ -46,8 +43,8 @@ fight.on('click','up', function(e) {
 });
 
 end.on('show', function(){
- endTime = Date.now();
-  end.subtitle('You survived ' + ((endTime - startTime)/1000) + ' seconds.');
+ survivedTime();
+  end.subtitle('You survived ' + (secondsSurvived/1000) + ' seconds.');
 });
 
 end.on('click','up',function(e){
