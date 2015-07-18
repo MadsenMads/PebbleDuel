@@ -7,11 +7,6 @@
 var UI = require('ui');
 var Accel = require('ui/accel');
 var Vibe = require('ui/vibe');
-var Clock = require('clock');
-var survivedTime = null;
-var startTime = null;
-
-
 
 var main = new UI.Card({
   title: 'Ultimate Duel',
@@ -20,32 +15,36 @@ var main = new UI.Card({
 
 
 var fight = new UI.Card({
-    title: 'Fight!',
-    
+    title: 'Fight!',  
 });
 
 var end = new UI.Card({
   title:'You Died!',
-  subtitle: ('You survived ' + (survivedTime/1000) + ' seconds.'),
 });
 
 main.show();
 
 main.on('click', 'up', function(e) {
-  startTime = Date.now();
-  fight.show();
   Accel.init();
+  fight.show();
 });
 
 // Register for 'tap' events
 //fight.on('accelTap', function(e) {
 fight.on('click','up', function(e) {
   Vibe.vibrate('short');
-  survivedTime = (Date.now() - startTime);
   end.show();
 });
+ 
 
+fight.on('show', function(){
+    var startTime = Date.now();
+});
 
+end.on('show', function(){
+  var survivedTime = (Date.now() - startTime);
+  end.subtitle('You survived ' + survivedTime + ' seconds.');
+});
 
 end.on('click','up',function(e){
   main.show();
