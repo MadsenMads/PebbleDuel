@@ -3,6 +3,12 @@ var UI = require('ui');
 var Accel = require('ui/accel');
 var Vibe = require('ui/vibe');
 
+/******** variables ****************/
+
+//var startTime = 0;
+var endTime = 0;
+//var survivedTime = 0;
+
 /******** app initializing *********/
 
 var main = new UI.Card({
@@ -36,13 +42,14 @@ fight.on('click','up', function(e) {
  
 
 fight.on('show', function(){
-    var startTime = Date.now();
+//    startTime = Date.now();
 });
 
+
 end.on('show', function(){
-  var endTime = Date.now();
-  var survivedTime = (endTime - startTime);
-  end.subtitle('You survived ' + survivedTime + ' seconds.');
+ endTime = Date.now();
+ // survivedTime = (endTime - startTime);
+  end.subtitle('You survived ' + endTime + ' seconds.');
 });
 
 end.on('click','up',function(e){
