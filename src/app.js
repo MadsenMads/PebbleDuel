@@ -10,15 +10,15 @@ var startTime;
 var setStartTime = function() {
  startTime = Date.now();
 };
-var getStartTime = function() {
- return startTime;
-};
+//var getStartTime = function() {
+ //return startTime;
+//};
 
 /******** app initializing *********/
 
 var main = new UI.Card({
   title: 'Ultimate Duel',
-  subtitle: 'Press top button to begin fight.'
+  subtitle: 'Press up to start'
 });
 
 var fight = new UI.Card({
@@ -36,7 +36,6 @@ main.show();
 main.on('click', 'up', function(e) {
   Accel.init();
   fight.show();
-   setStartTime();
 });
 
 // Register for 'tap' events
@@ -48,7 +47,7 @@ fight.on('click','up', function(e) {
 
 end.on('show', function(){
  endTime = Date.now();
-  end.subtitle('You survived ' + ((endTime - getStartTime)/1000) + ' seconds.');
+  end.subtitle('You survived ' + ((endTime - startTime)/1000) + ' seconds.');
 });
 
 end.on('click','up',function(e){
