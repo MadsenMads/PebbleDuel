@@ -1,21 +1,14 @@
-/**
- * Welcome to Pebble.js!
- *
- * This is where you write your app.
- */
-
+/************* required ************/
 var UI = require('ui');
 var Accel = require('ui/accel');
 var Vibe = require('ui/vibe');
-var startTime = null;
-var suvivedTime = null;
-var endTime = null;
+
+/******** app initializing *********/
 
 var main = new UI.Card({
   title: 'Ultimate Duel',
   subtitle: 'Press top button to begin fight.'
 });
-
 
 var fight = new UI.Card({
     title: 'Fight!',  
@@ -26,6 +19,8 @@ var end = new UI.Card({
 });
 
 main.show();
+
+/*********** functions *************/
 
 main.on('click', 'up', function(e) {
   Accel.init();
@@ -41,12 +36,12 @@ fight.on('click','up', function(e) {
  
 
 fight.on('show', function(){
-    startTime = Date.now();
+    var startTime = Date.now();
 });
 
 end.on('show', function(){
-  endTime = Date.now();
-  survivedTime = (endTime - startTime);
+  var endTime = Date.now();
+  var survivedTime = (endTime - startTime);
   end.subtitle('You survived ' + survivedTime + ' seconds.');
 });
 
