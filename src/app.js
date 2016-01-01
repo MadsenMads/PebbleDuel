@@ -33,13 +33,15 @@ main.on('click', 'up', function(e) {
   Accel.init();
   startTime  = Date.now();
   fight.show();
+  main.hide();
 });
 
 // Register for 'tap' events
-fight.on('accelTap', function(e) {
-//fight.on('click','up', function(e) {
+//fight.on('accelTap', function(e) {
+fight.on('click','up', function(e) {
   Vibe.vibrate('short');
   end.show();
+  fight.hide();
 });
 
 end.on('show', function(){
@@ -49,6 +51,7 @@ end.on('show', function(){
 
 end.on('click','up',function(e){
   main.show();
+  end.hide();
   
 });
 
